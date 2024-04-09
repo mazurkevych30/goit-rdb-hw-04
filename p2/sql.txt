@@ -1,0 +1,30 @@
+p2_a
+INSERT INTO authors (author_id, author_name)
+VALUES (4, 'Steve'), (5, 'Lina');
+
+p2_b
+INSERT INTO genres (genre_id, genre_name)
+VALUES (1, 'Detective'), (2, 'Fantasy');
+
+p2_c
+INSERT INTO books (`book_id`,
+`title`,
+`publication_year`,
+`author_id`,
+`genre_id`)
+VALUES 
+(1, 'One thousand and one nights','2015',3,2);
+
+p2_d
+INSERT INTO users (user_id, username, email)
+VALUES 
+(1, 'Vladyslav','vladyslav@gmail.com');
+
+p2_e
+INSERT INTO borrowed_books (borrow_id, 
+book_id,
+user_id,
+borrow_date,
+return_date)
+VALUES 
+(1, 1, 1, '2024-04-01', '2024-04-09');

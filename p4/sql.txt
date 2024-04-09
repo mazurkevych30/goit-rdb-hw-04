@@ -1,0 +1,86 @@
+p4_1
+SELECT count(*) FROM order_details
+INNER JOIN orders ON order_details.order_id=orders.id
+INNER JOIN customers ON orders.customer_id=customers.id
+INNER JOIN products ON order_details.product_id=products.id
+INNER JOIN categories ON products.category_id=categories.id
+INNER JOIN employees ON orders.employee_id=employees.employee_id
+INNER JOIN shippers ON orders.shipper_id=shippers.id
+INNER JOIN suppliers ON products.supplier_id=suppliers.id
+
+p4_2
+SELECT count(*) FROM order_details
+LEFT JOIN orders ON order_details.order_id=orders.id
+INNER JOIN customers ON orders.customer_id=customers.id
+INNER JOIN products ON order_details.product_id=products.id
+RIGHT JOIN categories ON products.category_id=categories.id
+INNER JOIN employees ON orders.employee_id=employees.employee_id
+LEFT JOIN shippers ON orders.shipper_id=shippers.id
+INNER JOIN suppliers ON products.supplier_id=suppliers.id
+
+Відповіть: Оскільки всі рядки мають відповідність в таблиці з'єднання, кількість рядків не змінилася
+
+p4_3
+SELECT categories.name, count(categories.name), avg(order_details.quantity) FROM order_details
+LEFT JOIN orders ON order_details.order_id=orders.id
+INNER JOIN customers ON orders.customer_id=customers.id
+INNER JOIN products ON order_details.product_id=products.id
+RIGHT JOIN categories ON products.category_id=categories.id
+INNER JOIN employees ON orders.employee_id=employees.employee_id
+LEFT JOIN shippers ON orders.shipper_id=shippers.id
+INNER JOIN suppliers ON products.supplier_id=suppliers.id
+WHERE employees.employee_id>3 AND employees.employee_id<=10
+
+p4_4
+SELECT categories.name, count(categories.name), avg(order_details.quantity) FROM order_details
+LEFT JOIN orders ON order_details.order_id=orders.id
+INNER JOIN customers ON orders.customer_id=customers.id
+INNER JOIN products ON order_details.product_id=products.id
+RIGHT JOIN categories ON products.category_id=categories.id
+INNER JOIN employees ON orders.employee_id=employees.employee_id
+LEFT JOIN shippers ON orders.shipper_id=shippers.id
+INNER JOIN suppliers ON products.supplier_id=suppliers.id
+WHERE employees.employee_id>3 AND employees.employee_id<=10
+GROUP BY categories.name
+
+p4_5
+SELECT categories.name, count(categories.name), avg(order_details.quantity) FROM order_details
+LEFT JOIN orders ON order_details.order_id=orders.id
+INNER JOIN customers ON orders.customer_id=customers.id
+INNER JOIN products ON order_details.product_id=products.id
+RIGHT JOIN categories ON products.category_id=categories.id
+INNER JOIN employees ON orders.employee_id=employees.employee_id
+LEFT JOIN shippers ON orders.shipper_id=shippers.id
+INNER JOIN suppliers ON products.supplier_id=suppliers.id
+WHERE employees.employee_id>3 AND employees.employee_id<=10
+GROUP BY categories.name
+HAVING avg(order_details.quantity)>21
+
+p4_6
+SELECT categories.name, count(categories.name), avg(order_details.quantity) FROM order_details
+LEFT JOIN orders ON order_details.order_id=orders.id
+INNER JOIN customers ON orders.customer_id=customers.id
+INNER JOIN products ON order_details.product_id=products.id
+RIGHT JOIN categories ON products.category_id=categories.id
+INNER JOIN employees ON orders.employee_id=employees.employee_id
+LEFT JOIN shippers ON orders.shipper_id=shippers.id
+INNER JOIN suppliers ON products.supplier_id=suppliers.id
+WHERE employees.employee_id>3 AND employees.employee_id<=10
+GROUP BY categories.name
+HAVING avg(order_details.quantity)>21
+ORDER BY count(categories.name) DESC
+
+p4_7
+SELECT categories.name, count(categories.name), avg(order_details.quantity) FROM order_details
+LEFT JOIN orders ON order_details.order_id=orders.id
+INNER JOIN customers ON orders.customer_id=customers.id
+INNER JOIN products ON order_details.product_id=products.id
+RIGHT JOIN categories ON products.category_id=categories.id
+INNER JOIN employees ON orders.employee_id=employees.employee_id
+LEFT JOIN shippers ON orders.shipper_id=shippers.id
+INNER JOIN suppliers ON products.supplier_id=suppliers.id
+WHERE employees.employee_id>3 AND employees.employee_id<=10
+GROUP BY categories.name
+HAVING avg(order_details.quantity)>21
+ORDER BY count(categories.name) DESC
+LIMIT 4 OFFSET 1
